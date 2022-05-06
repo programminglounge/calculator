@@ -72,4 +72,256 @@ def enterequal():
   else:
     result = 0;
     while (len(operators) != 0):
+      if ('/' in operators and '*' in operators and '%' in operators):
+        if (operators.index('/') < operators.index('*') and operators.index('/') < operators.index('%')):
+          result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+          operands.pop(operators.index('/'))
+          operands.pop(operators.index('/'))
+          operands.insert(operators.index('/'), result)
+          result = 0
+          operators.pop(operators.index('/'), result)
+        elif (operators.index('*') < operators.index('/') and operators.index('*') < operators.index('%')):
+          result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+          operands.pop(operators.index('*'))
+          operands.pop(operators.index('*'))
+          operands.insert(operators.index('*'), result)
+          result = 0
+          operators.pop(operators.index('*'), result)
+        elif (operators.index('%') < operators.index('/') and operators.index('%') < operators.index('*')):
+          result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+          operands.pop(operators.index('%'))
+          operands.pop(operators.index('%'))
+          operands.insert(operators.index('%'), result)
+          result = 0
+          operators.pop(operators.index('%'), result)
+      elif ('/' in operators and '*' in operators):
+        if(operators.index('/') < operators.index('*')):
+          result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+          operands.pop(operators.index('/'))
+          operands.pop(operators.index('/'))
+          operands.insert(operators.index('/'), result)
+          result = 0
+          operators.pop(operators.index('/'), result)
+        else:
+          result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+          operands.pop(operators.index('*'))
+          operands.pop(operators.index('*'))
+          operands.insert(operators.index('*'), result)
+          result = 0
+          operators.pop(operators.index('*'), result)
+            
+      elif ('/' in operators and '%' in operators):
+        if(operators.index('/') < operators.index('%')):
+          result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+          operands.pop(operators.index('/'))
+          operands.pop(operators.index('/'))
+          operands.insert(operators.index('/'), result)
+          result = 0
+          operators.pop(operators.index('/'), result)
+        else:
+          result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+          operands.pop(operators.index('%'))
+          operands.pop(operators.index('%'))
+          operands.insert(operators.index('%'), result)
+          result = 0
+          operators.pop(operators.index('%'), result) 
+       
+      elif ('*' in operators and '%' in operators):
+        if(operators.index('*') < operators.index('%')):
+          result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+          operands.pop(operators.index('*'))
+          operands.pop(operators.index('*'))
+          operands.insert(operators.index('*'), result)
+          result = 0
+          operators.pop(operators.index('*'), result)
+        else:
+          result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+          operands.pop(operators.index('%'))
+          operands.pop(operators.index('%'))
+          operands.insert(operators.index('%'), result)
+          result = 0
+          operators.pop(operators.index('%'), result) 
+          
+      elif ('%' in operators):
+        result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+        operands.pop(operators.index('%'))
+        operands.pop(operators.index('%'))
+        operands.insert(operators.index('%'), result)
+        result = 0
+        operators.pop(operators.index('%'), result)
+        
+      elif ('/' in operators):
+        result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+        operands.pop(operators.index('/'))
+        operands.pop(operators.index('/'))
+        operands.insert(operators.index('/'), result)
+        result = 0
+        operators.pop(operators.index('/'), result)
+        
+      elif ('*' in operators):
+        result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+        operands.pop(operators.index('*'))
+        operands.pop(operators.index('*'))
+        operands.insert(operators.index('*'), result)
+        result = 0
+        operators.pop(operators.index('*'), result)
+        
+      elif ('+' in operators):
+        result = result + float (operands[operators.index('+')])+ float (operands[operators.index('+')+1])
+        operands.pop(operators.index('+'))
+        operands.pop(operators.index('+'))
+        operands.insert(operators.index('+'), result)
+        result = 0
+        operators.pop(operators.index('+'), result)
+        
       
+      elif ('-' in operators):
+        result = result + float (operands[operators.index('-')])- float (operands[operators.index('-')+1])
+        operands.pop(operators.index('-'))
+        operands.pop(operators.index('-'))
+        operands.insert(operators.index('-'), result)
+        result = 0
+        operators.pop(operators.index('-'), result)
+     
+  result = float(operands[0])
+  enterac()
+  w.insert("end", result)
+  
+def enterequal():
+  content = w.get("1.0", "end")
+  operands = re.split('\*|\/|\+|\-|\n|\%', content)
+  operators = []
+  for i in content:
+    if not i.isdigit() and i!='.':
+      operators.append(i)
+  operands.pop()
+  operators.pop()
+  if (len(operands) != len(operators)+1):
+    enterac()
+    w.insert("end", "error: Please check the list of operators and operands")
+  else:
+    result = 0;
+    while (len(operators) != 0):
+      if ('/' in operators and '*' in operators and '%' in operators):
+        if (operators.index('/') < operators.index('*') and operators.index('/') < operators.index('%')):
+          result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+          operands.pop(operators.index('/'))
+          operands.pop(operators.index('/'))
+          operands.insert(operators.index('/'), result)
+          result = 0
+          operators.pop(operators.index('/'), result)
+        elif (operators.index('*') < operators.index('/') and operators.index('*') < operators.index('%')):
+          result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+          operands.pop(operators.index('*'))
+          operands.pop(operators.index('*'))
+          operands.insert(operators.index('*'), result)
+          result = 0
+          operators.pop(operators.index('*'), result)
+        elif (operators.index('%') < operators.index('/') and operators.index('%') < operators.index('*')):
+          result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+          operands.pop(operators.index('%'))
+          operands.pop(operators.index('%'))
+          operands.insert(operators.index('%'), result)
+          result = 0
+          operators.pop(operators.index('%'), result)
+      elif ('/' in operators and '*' in operators):
+        if(operators.index('/') < operators.index('*')):
+          result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+          operands.pop(operators.index('/'))
+          operands.pop(operators.index('/'))
+          operands.insert(operators.index('/'), result)
+          result = 0
+          operators.pop(operators.index('/'), result)
+        else:
+          result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+          operands.pop(operators.index('*'))
+          operands.pop(operators.index('*'))
+          operands.insert(operators.index('*'), result)
+          result = 0
+          operators.pop(operators.index('*'), result)
+            
+      elif ('/' in operators and '%' in operators):
+        if(operators.index('/') < operators.index('%')):
+          result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+          operands.pop(operators.index('/'))
+          operands.pop(operators.index('/'))
+          operands.insert(operators.index('/'), result)
+          result = 0
+          operators.pop(operators.index('/'), result)
+        else:
+          result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+          operands.pop(operators.index('%'))
+          operands.pop(operators.index('%'))
+          operands.insert(operators.index('%'), result)
+          result = 0
+          operators.pop(operators.index('%'), result) 
+       
+      elif ('*' in operators and '%' in operators):
+        if(operators.index('*') < operators.index('%')):
+          result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+          operands.pop(operators.index('*'))
+          operands.pop(operators.index('*'))
+          operands.insert(operators.index('*'), result)
+          result = 0
+          operators.pop(operators.index('*'), result)
+        else:
+          result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+          operands.pop(operators.index('%'))
+          operands.pop(operators.index('%'))
+          operands.insert(operators.index('%'), result)
+          result = 0
+          operators.pop(operators.index('%'), result) 
+          
+      elif ('%' in operators):
+        result = result + float (operands[operators.index('%')])% float (operands[operators.index('%')+1])
+        operands.pop(operators.index('%'))
+        operands.pop(operators.index('%'))
+        operands.insert(operators.index('%'), result)
+        result = 0
+        operators.pop(operators.index('%'), result)
+        
+      elif ('/' in operators):
+        result = result + float (operands[operators.index('/')])/ float (operands[operators.index('/')+1])
+        operands.pop(operators.index('/'))
+        operands.pop(operators.index('/'))
+        operands.insert(operators.index('/'), result)
+        result = 0
+        operators.pop(operators.index('/'), result)
+        
+      elif ('*' in operators):
+        result = result + float (operands[operators.index('*')])* float (operands[operators.index('*')+1])
+        operands.pop(operators.index('*'))
+        operands.pop(operators.index('*'))
+        operands.insert(operators.index('*'), result)
+        result = 0
+        operators.pop(operators.index('*'), result)
+        
+      elif ('+' in operators):
+        result = result + float (operands[operators.index('+')])+ float (operands[operators.index('+')+1])
+        operands.pop(operators.index('+'))
+        operands.pop(operators.index('+'))
+        operands.insert(operators.index('+'), result)
+        result = 0
+        operators.pop(operators.index('+'), result)
+        
+      
+      elif ('-' in operators):
+        result = result + float (operands[operators.index('-')])- float (operands[operators.index('-')+1])
+        operands.pop(operators.index('-'))
+        operands.pop(operators.index('-'))
+        operands.insert(operators.index('-'), result)
+        result = 0
+        operators.pop(operators.index('-'), result)
+  if (operands[0] >=0):   
+    result = float(operands[0])
+    sqrtresult = math.sqrt(result)
+    enterac()
+    w.insert("end", sqrtresult)
+  
+  else:
+    enterac()
+    w.insert("end", "underneath square root can not be negative")
+    
+root = tk.Tk()
+
+  
